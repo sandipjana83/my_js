@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<style>
+  u{
+  margin-left: 560px;
+    color: blue;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+   
+  }
+  
+  div{
+    text-align: center;
+
+  }
+  #stop{
+    margin-left: 20px;
+    height: 30px;
+    width: 40px;
+    background-color: cadetblue;
+  }
+  #start{
+    background-color: aquamarine;
+  }
+
+</style>
+<body>
+  <h1><u id="text">Color Changing Random</u></h1>
+  <div>
+    <button id="start">Start</button>
+    <button id="stop">Stop</button>
+  </div>
+</body>
+<script>
+  const randomColor=function(){
+    const hex='0123456789ABCDEF'
+    let color='#'
+    for(let i=0;i<6;i++){
+      color +=hex[Math.floor(Math.random()*16)];
+    }
+    return color;
+  }
+  let intervalId
+  const StartchangingColor=function(){
+    intervalId=setInterval(function(){
+      document.body.style.backgroundColor=randomColor();
+    },1000)
+
+  }
+  const StopchangingColor=function(){
+    clearInterval(intervalId);
+    // intervalId=null;
+
+  }
+  document.querySelector('#start').addEventListener('click',StartchangingColor)
+  document.querySelector('#stop').addEventListener('click',StopchangingColor)
+</script>
+</html>

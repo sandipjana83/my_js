@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ChangeEvent</title>
+</head>
+<style>
+  .box{
+    background-color:azure;
+    height:370px;
+    width: 500px;
+    border: 5px solid red;
+    border-radius: 11px;
+    text-align: center;
+    margin-left: 400px;
+  }
+  #key{
+    margin-left: 600px;
+    margin-top: 20px;
+    background-color: antiquewhite;
+  }
+</style>
+<body style="background-color: aquamarine;">
+  <form>
+    <label>Enter username :</label><input id="form" type="text" placeholder="Enter username">
+  </form>
+  <hr>
+  <div class="box">
+  <h1>API</h1>
+  
+  <div>
+    <img id="pic" src="https://i0.wp.com/picjumbo.com/wp-content/uploads/beautiful-nature-mountain-scenery-with-flowers-free-photo.jpg?w=2210&quality=70" alt="img"height=200px>
+    <p>Followers: <span>20</span></p>
+  </div>
+</div>
+  <button id="key">Change</button>
+  <button id="reset">Reset</button>
+</body>
+<script>
+  const nam=document.querySelector('h1')
+  const key=document.querySelector('#key')
+  const img=document.getElementById("pic")
+  const bio=document.querySelector('span')
+  const reset=document.querySelector('#reset');
+  const form =String (document.getElementById("form").value);
+  //console.log(form);
+  
+  const orgnam=nam.innerText
+  const orgbio=bio.innerText
+  const orgimg="https://i0.wp.com/picjumbo.com/wp-content/uploads/beautiful-nature-mountain-scenery-with-flowers-free-photo.jpg?w=2210&quality=70";
+  let api='https://api.github.com/users/' + form;
+  // const xhr=new XMLHttpRequest()
+  // xhr.open('GET',api);
+  // xhr.onreadystatechange=function(){
+  //    //console.log(xhr.readyState);
+  //   if(xhr.readyState===4){
+  //     const data= JSON.parse(this.responseText);
+  //     const user=data.name
+  //     const avt=data.avatar_url
+  //     const flo=data.followers
+  //     const changeEvent=function(){
+  //       nam.innerHTML=user;
+  //       bio.innerHTML=flo;
+  //       img.setAttribute("src",avt)
+  //     }
+  //     key.addEventListener('click',changeEvent)
+  //   }
+  //   reset.addEventListener('click',function(e){
+      
+  //     nam.innerHTML=orgnam
+  //     bio.innerText=orgbio
+  //     img.setAttribute("src",orgimg);
+  //   })
+  // }
+  // xhr.send();
+
+  /*------With fetch Library------*/
+  fetch(api)
+  .then((response)=>{
+    return response.json();
+  })
+  .then(function(data){
+    //console.log(data);
+    const user=data.name
+    const avt=data.avatar_url
+    const flo=data.followers
+    const changeEvent=function(){
+        nam.innerHTML=user;
+        bio.innerHTML=flo;
+        img.setAttribute("src",avt)
+      }
+    key.addEventListener('click',changeEvent);
+    reset.addEventListener('click',function(e){
+      nam.innerHTML=orgnam
+      bio.innerText=orgbio
+      img.setAttribute("src",orgimg);
+    });
+  })
+  .catch((err)=>console.log(err)
+  )
+  
+</script>
+</html>

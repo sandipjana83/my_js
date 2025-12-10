@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>koyel</title>
+</head>
+<body>
+  <ul class="girl">
+    <li style="color: palevioletred;">Sinjini</li>
+    <li>Koyel</li>
+  </ul>
+</body>
+<script>
+  // const div=document.createElement('div')
+  // console.log(div);
+  // div.className="main"
+  // div.id="_div"
+  // div.style.backgroundColor="brown"
+  // div.innerText="I Love Koyel"
+  // document.body.appendChild(div)
+  function addGirl(girlName) {
+    const girl=document.createElement('li');
+    girl.appendChild(document.createTextNode(girlName))
+    document.querySelector('.girl').appendChild(girl)
+  }
+  addGirl("Tumpa")
+  const secondLang=document.querySelector("li:nth-child(3)")
+  secondLang.innerHTML="jiya"
+</script>
+</html>
